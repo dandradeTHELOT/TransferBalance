@@ -3,18 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Balance Transfer Form</title>
+    <title>Confirm Transfer</title>
 </head>
 <body>
-    <h1>Transfer Balance</h1>
-    <form id="balanceForm">
-        <label for="transfer">Do you want to transfer the balance?</label>
-        <select id="transfer" name="transfer">
-            <option value="No">No</option>
-            <option value="Yes">Yes</option>
-        </select>
-        <button type="submit">Submit</button>
+    <h1>Confirm Transfer</h1>
+    <form id="transfer-form">
+        <p>Do you want to transfer your balance?</p>
+        <button type="button" id="confirm-button">Yes, Transfer</button>
     </form>
-    <script src="form.js"></script>
+    <script>
+        document.getElementById('confirm-button').addEventListener('click', function() {
+            fetch('https://your-make-webhook-url', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    // Puedes enviar datos adicionales si es necesario
+                    action: 'transfer_balance',
+                    // Incluye información relevante para el procesamiento
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                // Puedes redirigir a una página de confirmación si lo deseas
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
 </body>
 </html>
