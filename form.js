@@ -5,7 +5,7 @@ document.getElementById('balanceForm').addEventListener('submit', function(event
     const transferOption = document.getElementById('transfer').value;
 
     // Send the data to the webhook URL
-    fetch('https://your-webhook-url', {
+    fetch('https://hook.us2.make.com/yp8dhysyij28xsd8d538oo5o37vrpbiz', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
